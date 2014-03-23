@@ -1,0 +1,43 @@
+---
+sonar_major    : "3"
+sonar_minor    : "7.4"
+
+sonar_listen_ip : "0.0.0.0"
+sonar_port      : "9000"
+
+# JDBC Setting
+sonar_jdbc_driver        : "h2" # postgres, h2 or mysql
+sonar_jdbc_host          : "127.0.0.1"  
+sonar_jdbc_port          : 9092 # h2 default is 9092 postgresql 9092 and mysql is 3306
+sonar_jdbc_user          : "sonar"
+sonar_jdbc_pass          : "rN88HJkB"
+sonar_jdbc_db            : sonar
+#sonar_psq_schema        : sonar ## PostgreSQL account has permissions to access multiple schemas (check documentation)
+
+## Unix user/group
+sonar_owner    : "sonar" 
+sonar_group    : "sonar"
+## Where to install sonar
+sonar_base_dir : "/usr/local/sonar"
+
+## JDBC extra option
+sonar_jdbc_maxActive                     : 20
+sonar_jdbc_maxIdle                       : 5
+sonar_jdbc_minIdle                       : 2
+sonar_jdbc_maxWait                       : 5000
+sonar_jdbc_minEvictableIdleTimeMillis    : 600000
+sonar_jdbc_timeBetweenEvictionRunsMillis : 30000
+
+## Most likely you dont need to edit 
+sonar_service_state   : 'started'
+sonar_service_enabled : 'yes'
+sonar_version         : "{{sonar_major}}.{{sonar_minor}}"
+sonar_name            : "sonar-{{sonar_version}}"
+sonar_archive         : "sonar-{{sonar_version}}.zip"
+sonar_url             : "http://dist.sonar.codehaus.org/{{sonar_archive}}"
+sonar_home_dir        : "{{sonar_base_dir}}/{{sonar_name}}"
+sonar_conf_dir        : "{{sonar_home_dir}}/conf"
+sonar_bin_dir         : "{{sonar_home_dir}}/bin"
+sonar_webapp          : "{{sonar_home_dir}}/webapps"
+sonar_war_dir         : "{{sonar_home_dir}}/war/sonar-server/deploy/plugins/"
+sonar_ext_dir         : "{{sonar_home_dir}}/extensions/plugins/"

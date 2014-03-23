@@ -1,0 +1,75 @@
+---
+
+- name: Install Java 
+  apt: 
+    name=openjdk-7-jre-headless 
+    update_cache=yes
+  tags: sonar_setup
+
+- name: Install unzip
+  apt: 
+    name=unzip
+  tags: sonar_setup
+
+- name: Add group "sonar"
+  group: 
+    name="{{sonar_group}}"
+  tags: sonar_setup
+
+- name: Add user "sonar"
+  user: 
+    name="{{sonar_owner}}"
+    group="{{sonar_group}}"
+    shell="/bin/bash"
+  tags: sonar_setup
+
+- name: Download sonar
+  get_url: 
+    url="{{sonar_url}}"
+    dest="/tmp/{{sonar_archive}}"
+  tags: sonar_setup
+
+- name: Create Basedir
+  file: 
+    dest="{{sonar_base_dir}}"
+    state=directory
+    owner="{{sonar_owner}}"
+    group="{{sonar_group}}"
+  tags: sonar_setup
+
+- name: Extract archive sonar
+  unarchive: 
+    src="/tmp/{{sonar_archive}}"
+    dest="{{sonar_base_dir}}/"
+    owner="{{sonar_owner}}"
+    group="{{sonar_group}}"
+    copy=no
+  notify: restart sonar
+  sudo_user: "{{sonar_owner}}"
+  tags: sonar_setup
+
+- name: create a link to sonar
+  file:
+    src="{{sonar_base_dir}}/{{sonar_name}}"
+    dest="{{sonar_base_dir}}/sonar{{sonar_major}}"
+    state=link
+    owner="{{sonar_owner}}"
+    group="{{sonar_group}}"
+  tags: sonar_setup
+
+- name: Configure sonar server properties
+  template:
+    src=sonar.conf.j2
+    dest="{{sonar_conf_dir}}/sonar.properties"
+  tags: sonar_setup
+  notify: restart sonar
+
+- name: Install sonar init script
+  file: 
+    src="{{sonar_bin_dir}}/linux-x86-{{ansible_userspace_bits}}/sonar.sh"
+    dest="/etc/init.d/sonar"
+    state=link
+    mode=0755
+    owner="root"
+    group="root"
+  tags: sonar_setup
