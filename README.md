@@ -51,8 +51,5 @@ You can configure your variables in ansible with one of the following
     
   ```ansible-playbook -l hostname sonar.yml```
 
-##Test
-  You should get a test mail if it works on the root mail
-
 ##Possible issues
 
