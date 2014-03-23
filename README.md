@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/ahelal/ansible-sonar.svg?branch=master)](https://travis-ci.org/ahelal/ansible-sonar)
 #Readme
 
 This ansible role deploys sonar for Ubuntu 12.04 (tested on vagrant)
