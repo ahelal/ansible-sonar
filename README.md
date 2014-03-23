@@ -12,7 +12,7 @@ This ansible role deploys sonar for Ubuntu 12.04 (tested on vagrant)
 
 ##Variables 
   Mostly you would need to configure JDBC setting if you need to tweak more have a look at the default variables are located **defaults/main.yml**. By default h2 database will be used. You can still setup mysql or postgresql in the JDBC setting. 
-  To install postgres or mysql search ansible-galaxy for roles. 
+  To install postgres or mysql search ansible-galaxy you can use ```ansible-galaxy install Ansibles.mysql``` or ```ansible-galaxy install Ansibles.postgresql``` 
 
   - *sonar_jdbc_driver:*  You can use postgres, h2 or mysql
 
