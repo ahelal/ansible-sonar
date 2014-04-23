@@ -45,7 +45,7 @@
     owner="{{sonar_owner}}"
     group="{{sonar_group}}"
     copy=no
-    creates="{{sonar_base_dir}}/"
+    creates="{{sonar_home_dir}}/bin"
   notify: restart sonar
   sudo_user: "{{sonar_owner}}"
   tags: sonar_setup
