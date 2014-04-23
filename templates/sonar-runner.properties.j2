@@ -1,0 +1,41 @@
+#Configure here general information about the environment, such as SonarQube DB details for example
+#No information about specific project should appear here
+
+#----- Default SonarQube server
+sonar.host.url=http://{{sonar_analyzer_runner_host_connect}}:{{sonar_port}}
+
+#----- PostgreSQL
+#sonar.jdbc.url=jdbc:postgresql://localhost/sonar
+
+#----- MySQL
+#sonar.jdbc.url=jdbc:mysql://localhost:3306/sonar?useUnicode=true&amp;characterEncoding=utf8
+
+#----- Oracle
+#sonar.jdbc.url=jdbc:oracle:thin:@localhost/XE
+
+#----- Microsoft SQLServer
+#sonar.jdbc.url=jdbc:jtds:sqlserver://localhost/sonar;SelectMethod=Cursor
+
+
+#----- Global database settings
+ ## postgres, h2 or mysql
+{% if sonar_jdbc_driver == "postgresql" %} 
+sonar.jdbc.url=jdbc:postgresql://{{sonar_jdbc_host}}:{{sonar_jdbc_port}}/{{sonar_jdbc_db}}
+{% elif sonar_jdbc_driver == "h2" %} 
+sonar.jdbc.url=jdbc:h2:tcp://{{sonar_jdbc_host}}:{{sonar_jdbc_port}}/{{sonar_jdbc_db}}
+{% elif sonar_jdbc_driver == "mysql" %} 
+sonar.jdbc.url=jdbc:mysql://{{sonar_jdbc_host}}:{{sonar_jdbc_port}}/{{sonar_jdbc_db}}?useUnicode=true&characterEncoding=utf8
+{% else %}
+## NO DATABASE supported for {{sonar_jdbc_driver}} in ansible
+{% endif %}
+
+sonar.jdbc.username={{sonar_jdbc_user}}
+sonar.jdbc.password={{sonar_jdbc_pass}}
+
+#----- Default source code encoding
+#sonar.sourceEncoding=UTF-8
+
+#----- Security (when 'sonar.forceAuthentication' is set to 'true')
+#sonar.login=admin
+#sonar.password=admin
+

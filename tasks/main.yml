@@ -2,3 +2,9 @@
 
 - include: sonar.yml
 
+- include: analyzer.yml
+  when: sonar_analyzer_runner_install
+  
+- include: lang_py.yml
+  when: sonar_analyzer_py_install
+

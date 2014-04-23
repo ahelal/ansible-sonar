@@ -1,6 +1,6 @@
 ---
-sonar_major    : "3"
-sonar_minor    : "7.4"
+sonar_major     : "3"
+sonar_minor     : "7.4"
 
 sonar_listen_ip : "0.0.0.0"
 sonar_port      : "9000"
@@ -27,6 +27,18 @@ sonar_jdbc_minIdle                       : 2
 sonar_jdbc_maxWait                       : 5000
 sonar_jdbc_minEvictableIdleTimeMillis    : 600000
 sonar_jdbc_timeBetweenEvictionRunsMillis : 30000
+
+## Analyzer (non mavin) SonarQube Runner (plugins)
+sonar_analyzer_runner_install            : true
+sonar_analyzer_runner_version            : "2.3"
+sonar_analyzer_runner_dir                : "{{sonar_base_dir}}/sonar-runner-{{sonar_analyzer_runner_version}}"
+sonar_analyzer_runner_file               : "sonar-runner-dist-{{sonar_analyzer_runner_version}}.zip"
+sonar_analyzer_runner_url                : "http://repo1.maven.org/maven2/org/codehaus/sonar/runner/sonar-runner-dist/{{sonar_analyzer_runner_version}}/{{sonar_analyzer_runner_file}}"
+sonar_analyzer_runner_host_connect       : "127.0.0.1"
+
+## Analazer language support (plugins)
+sonar_analyzer_py_install                : true
+sonar_analyzer_py_url                    : http://repository.codehaus.org/org/codehaus/sonar-plugins/python/sonar-python-plugin/1.1/sonar-python-plugin-1.1.jar
 
 ## Most likely you dont need to edit 
 sonar_service_state   : 'started'
