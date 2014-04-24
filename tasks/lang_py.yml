@@ -1,7 +1,7 @@
 ---
 
 - name: lang_py | Install pylint
-  pip: 
+  apt: 
     name=pylint
 
 - name: lang_py | Download runner py
