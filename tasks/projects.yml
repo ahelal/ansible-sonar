@@ -1,0 +1,23 @@
+---
+- name: projects | Install git
+  apt: 
+    name=git
+
+- name: projects | Create project directory
+  file: 
+    dest="{{sonar_analyzer_runner_dir}}"
+    state=directory
+    owner="{{sonar_owner}}"
+    group="{{sonar_group}}"
+
+- name: projects | Get All projects from git
+  git:
+     repo="{{item.git}}"
+     dest="{{sonar_projects_base}}/{{item.name}}"
+     version="{{item.version}}"
+  with_items: sonar_projects
+  sudo_user: "{{sonar_owner}}"
+  when: sonar_projects | count > 0
+
+
+  #JAVA_HOME=$(readlink -f /usr/bin/java | sed "s:bin/java::")

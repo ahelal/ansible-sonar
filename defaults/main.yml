@@ -40,6 +40,27 @@ sonar_analyzer_runner_host_connect       : "127.0.0.1"
 sonar_analyzer_py_install                : true
 sonar_analyzer_py_url                    : http://repository.codehaus.org/org/codehaus/sonar-plugins/python/sonar-python-plugin/1.1/sonar-python-plugin-1.1.jar
 
+## Maven 
+maven_install                            : true
+maven_version_major                      : '3' # Maven major version number
+maven_version_minor                      : '2' # Maven minor version number
+maven_version_patch                      : '1' # Maven patch version number
+maven_mirror                             : "http://ftp.fau.de/apache/maven"
+maven_redis_sha256sum                    : 'cdee2fd50b2b4e34e2d67d01ab2018b051542ee759c07354dd7aed6f4f71675c'
+maven_bin_path                           : '/usr/local/bin'
+maven_install_dir                        : '/opt/maven'
+maven_version                            : "{{ maven_version_major }}.{{ maven_version_minor }}.{{ maven_version_patch }}"
+maven_redis_filename                     : "apache-maven-{{ maven_version }}-bin.tar.gz"
+
+## sonar_projects:
+sonar_projects_base                       : "{{sonar_base_dir}}/projects"
+
+sonar_projects                           :
+    - name    : "sonar-example"
+      git     : "https://github.com/SonarSource/sonar-examples.git"
+      version : "master"
+      cron    : ""
+
 ## Most likely you dont need to edit 
 sonar_service_state   : 'started'
 sonar_service_enabled : 'yes'

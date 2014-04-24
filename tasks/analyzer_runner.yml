@@ -1,20 +1,20 @@
 ---
 
-- name: analyzer | Download runner
+- name: analyzer_runner | Download 
   get_url: 
     url="{{sonar_analyzer_runner_url}}"
     dest="/tmp/{{sonar_analyzer_runner_file}}"
-  tags: sonar_setup
+  tags: analyzer_runner
 
-- name: analyzer | Create base dir runner
+- name: analyzer_runner | Create base dir 
   file: 
     dest="{{sonar_analyzer_runner_dir}}"
     state=directory
     owner="{{sonar_owner}}"
     group="{{sonar_group}}"
-  tags: sonar_setup
+  tags: analyzer_runner
 
-- name: analyzer | Extract runner archive
+- name: analyzer_runner | Extract archive
   unarchive: 
     src="/tmp/{{sonar_analyzer_runner_file}}"
     dest="{{sonar_base_dir}}/"
@@ -22,35 +22,37 @@
     group="{{sonar_group}}"
     copy=no
     creates="{{sonar_analyzer_runner_dir}}/conf"
-  notify: restart sonar
   sudo_user: "{{sonar_owner}}"
-  tags: sonar_setup
+  tags: analyzer_runner
+  notify: restart sonar
 
-- name: analyzer | Configure runner
+- name: analyzer_runner | Configuration file
   template:
     src=sonar-runner.properties.j2
     dest="{{sonar_analyzer_runner_dir}}/conf/sonar-runner.properties"
-  tags: sonar_setup
+  tags: analyzer_runner
   notify: restart sonar
 
-- name: analyzer | bash profile SONAR_RUNNER_HOME
+- name: analyzer_runner | bash profile SONAR_RUNNER_HOME
   lineinfile: 
      dest="{{sonar_base_dir}}/.bash_profile" 
      state=present
      create=yes
      regexp="SONAR_RUNNER_HOME"
-     line="export SONAR_RUNNER_HOME={{sonar_analyzer_runner_version}}"
+     line="export SONAR_RUNNER_HOME={{sonar_analyzer_runner_dir}}"
      mode=0644
      owner="{{sonar_owner}}"
      group="{{sonar_group}}"
+  tags: analyzer_runner
 
-- name: analyzer | bash profile PATH
+- name: analyzer_runner | bash profile PATH
   lineinfile: 
      dest="{{sonar_base_dir}}/.bash_profile" 
      state=present
      create=yes
      regexp="PATH"
-     line="export PATH=$PATH:{{sonar_analyzer_runner_version}}"
+     line="export PATH=$PATH:{{sonar_analyzer_runner_dir}}/bin"
      mode=0644
      owner="{{sonar_owner}}"
-     group="{{sonar_group}}"     
+     group="{{sonar_group}}"
+  tags: analyzer_runner

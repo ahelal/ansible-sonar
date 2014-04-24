@@ -1,0 +1,64 @@
+---
+
+- name: maven | Download Maven 
+  tags: maven
+  get_url:
+    dest=/tmp/{{ maven_redis_filename }}
+    url={{ maven_mirror }}/maven-{{ maven_version_major }}/{{ maven_version }}/binaries/{{ maven_redis_filename }}
+    owner=0
+    group=0
+    mode=0644
+    sha256sum={{ maven_redis_sha256sum }}
+
+- name: maven | Install Maven installation directory
+  tags: maven
+  file:
+    state=directory
+    owner=0
+    group=0
+    mode=0755
+    dest={{ maven_install_dir }}
+
+- name: maven | Install Maven
+  tags: maven
+  unarchive:
+    src=/tmp/{{ maven_redis_filename }}
+    dest={{ maven_install_dir }}
+    copy=no
+
+- name: maven | Install Maven bin directory
+  tags: maven
+  file:
+    state=directory
+    owner=0
+    group=0
+    mode=0755
+    dest={{ maven_bin_path }}
+
+- name: maven | Install Maven binary
+  tags: maven
+  file:
+    state=link
+    force=true
+    src={{ maven_install_dir }}/apache-maven-{{ maven_version }}/bin/mvn
+    dest={{ maven_bin_path }}/mvn
+
+- name: maven | Create Maven directory .m2
+  tags: maven
+  file:
+    state=directory
+    dest="{{sonar_base_dir}}/.m2"
+    owner="{{sonar_owner}}"
+    group="{{sonar_group}}"
+    mode=0755
+
+- name: maven | Deploy maven settings.xml
+  tags: maven
+  template:
+    src=settings.xml.j2
+    dest="{{sonar_base_dir}}/.m2/settings.xml"
+    owner="{{sonar_owner}}"
+    group="{{sonar_group}}"
+
+## might need export MAVEN_OPTS="-Xmx512m -XX:MaxPermSize=128m"
+## java home
