@@ -5,8 +5,7 @@
 - include: analyzer_runner.yml
   when: sonar_analyzer_runner_install
   
-- include: lang_py.yml
-  when: sonar_analyzer_py_install
+- include: plugins.yml
 
 - include: maven.yml
   when: maven_install

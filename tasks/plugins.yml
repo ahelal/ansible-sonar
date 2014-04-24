@@ -1,0 +1,17 @@
+---
+
+- name: plugins | Install pylint
+  apt: 
+    name="{{item}}"
+  with_items: sonar_plugins_apt
+  notify: restart sonar
+  when: "sonar_plugins_apt is defined and sonar_plugins_apt | count > 0"
+
+- name: plugins | Download and install plugins
+  get_url: 
+    url="{{item.url}}"
+    dest="{{sonar_ext_dir}}"
+  with_items: sonar_plugins  
+  sudo_user: "{{sonar_owner}}"  
+  notify: restart sonar
+  when: "sonar_plugins_apt is defined and sonar_plugins_apt | count > 0"
