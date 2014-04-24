@@ -5,7 +5,7 @@ before_install:
  - sudo apt-get update -qq
  - sudo apt-get install -qq python-apt python-pycurl
 install:
-  - pip install ansible
+  - pip install --pre ansible
 script:
   - export ANSIBLE_ROLES_PATH="../"
   - echo localhost > inventory
