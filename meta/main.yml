@@ -1,7 +1,7 @@
 galaxy_info:
   author: Adham Helal
   description: "Deploy sonar qube on Ubuntu 12.04"
-  min_ansible_version: 1.4
+  min_ansible_version: 1.6
   platforms:
   - name: Ubuntu
     versions:
