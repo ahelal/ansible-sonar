@@ -6,6 +6,7 @@ This ansible role deploys sonar for Ubuntu 12.04 (tested on vagrant)
 ##Prerequisite
 * Having ansible installed on your workstation. 
 * optional postgresql and mysql server
+* java either JDK or JRE depanding if your going to use java based projects
 
 ##How to install
 * Use github to clone/fork in your role directory
