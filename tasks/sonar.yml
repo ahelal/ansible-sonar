@@ -1,11 +1,5 @@
 ---
 
-- name: Install Java 
-  apt: 
-    name=openjdk-7-jre-headless 
-    update_cache=yes
-  tags: sonar_setup
-
 - name: Install unzip
   apt: 
     name=unzip
