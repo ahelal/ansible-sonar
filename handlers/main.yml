@@ -1,7 +1,12 @@
 ---
 - name: restart sonar 
-  service: name=sonar state=restarted enabled={{sonar_service_enabled}}
+  service: 
+     name=sonar
+     state=restarted
+     enabled={{sonar_service_enabled}}
   notify:  wait for sonar to start
 
 - name: wait for sonar to start
-  wait_for: port={{sonar_port}}
+  wait_for: 
+     port={{sonar_port}}
+  timeout=180
