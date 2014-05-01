@@ -9,4 +9,4 @@
 - name: wait for sonar to start
   wait_for: 
      port={{sonar_port}}
-  timeout=180
+     timeout=180
