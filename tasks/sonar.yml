@@ -1,5 +1,10 @@
 ---
 
+- name: Sonar | Check database choice
+  fail:
+     msg="{{sonar_jdbc_driver}} is not a supported database"
+  when: "sonar_jdbc_driver not in sonar_supported_db"
+
 - name: Install unzip
   apt: 
     name=unzip

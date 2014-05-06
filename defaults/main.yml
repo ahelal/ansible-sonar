@@ -8,7 +8,7 @@ sonar_port                               : "9000"
 # JDBC Setting
 sonar_jdbc_driver                        : "h2" # postgres, h2 or mysql
 sonar_jdbc_host                          : "127.0.0.1"  
-sonar_jdbc_port                          : 9092 # h2 default is 9092 postgresql 9092 and mysql is 3306
+sonar_jdbc_port                          : 9092 # h2 default is 9092 postgresql 5432 and mysql is 3306
 sonar_jdbc_user                          : "sonar"
 sonar_jdbc_pass                          : "rN88HJkB"
 sonar_jdbc_db                            : sonar
@@ -26,6 +26,9 @@ sonar_jdbc_minIdle                       : 2
 sonar_jdbc_maxWait                       : 5000
 sonar_jdbc_minEvictableIdleTimeMillis    : 600000
 sonar_jdbc_timeBetweenEvictionRunsMillis : 30000
+
+## Postgresql user/db install
+sonar_postgres_install                   : False ## By default dont install postgresql
 
 ## Analyzer (non mavin) SonarQube Runner (plugins)
 sonar_analyzer_runner_install            : true
@@ -95,3 +98,8 @@ sonar_bin_dir         : "{{sonar_home_dir}}/bin"
 sonar_webapp          : "{{sonar_home_dir}}/webapps"
 sonar_war_dir         : "{{sonar_home_dir}}/war/sonar-server/deploy/plugins/"
 sonar_ext_dir         : "{{sonar_home_dir}}/extensions/plugins/"
+
+sonar_supported_db    :
+   - postgresql
+   - h2
+   - tcp
