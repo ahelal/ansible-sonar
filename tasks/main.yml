@@ -4,6 +4,9 @@
 - include:  postgresql.yml
   when: sonar_postgres_install
 
+- include:  mysql.yml
+  when: sonar_mysql_install
+  
 - include: sonar.yml
 
 - include: analyzer_runner.yml
