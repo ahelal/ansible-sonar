@@ -1,0 +1,22 @@
+---
+
+  
+- name: mysql | Create sonar mysql database
+  mysql_db: >
+    name={{ sonar_jdbc_db }}
+    state=present
+  sudo_user: postgres
+  notify: restart sonar
+  tags: mysql_server
+  
+- name: mysql | Create sonar mysql user
+  mysql_user: >
+    name={{ sonar_jdbc_user }}
+    host={{ item }}
+    priv={{ sonar_jdbc_db }}.*:ALL
+    password={{ sonar_jdbc_pass }}
+  with_items: sonar_mysql_allowed_hosts
+  sudo_user: postgres
+  notify: restart sonar
+  tags: mysql_server      
+ 

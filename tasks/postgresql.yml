@@ -8,7 +8,7 @@
   notify: restart sonar
   tags: postgresql_server
 
-- name: postgresql | Create Zabbix postgresql database
+- name: postgresql | Create sonar postgresql database
   postgresql_db: 
      name="{{sonar_jdbc_db}}"
      owner="{{sonar_jdbc_user}}"
