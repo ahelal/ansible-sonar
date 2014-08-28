@@ -5,7 +5,9 @@
   mysql_db: >
     name={{ sonar_jdbc_db }}
     state=present
-  sudo_user: postgres
+    login_user={{ sonar_login_user}}    
+    login_password={{ sonar_login_password }}
+  sudo_user: "{{ sonar_mysql_sudo_user }}"
   notify: restart sonar
   tags: mysql_server
   
@@ -15,8 +17,10 @@
     host={{ item }}
     priv={{ sonar_jdbc_db }}.*:ALL
     password={{ sonar_jdbc_pass }}
+    login_user={{ sonar_login_user}}    
+    login_password={{ sonar_login_password }}    
   with_items: sonar_mysql_allowed_hosts
-  sudo_user: postgres
+  sudo_user: "{{ sonar_mysql_sudo_user }}"
   notify: restart sonar
   tags: mysql_server      
  

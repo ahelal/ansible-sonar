@@ -6,17 +6,25 @@ sonar_listen_ip                          : "0.0.0.0"
 sonar_port                               : "9000"
 
 # JDBC Setting
-sonar_jdbc_host                          : "127.0.0.1"  
-sonar_jdbc_user                          : "sonar"
-sonar_jdbc_pass                          : "rN88HJkB"
-sonar_jdbc_db                            : sonar
 #postgres
-sonar_jdbc_driver                        : "h2" # postgres, h2 or mysql
-sonar_jdbc_port                          : 9092 # h2 default is 9092 postgresql 5432 and mysql is 3306
+#sonar_jdbc_driver                        : "h2" # postgres, h2 or mysql
+#sonar_jdbc_host                          : "127.0.0.1"  
+#sonar_jdbc_port                          : 9092 # h2 default is 9092 postgresql 5432 and mysql is 3306
+#sonar_jdbc_user                          : "sonar"
+#sonar_jdbc_pass                          : "rN88HJkB"
+#sonar_jdbc_db                            : sonar
 #sonar_psq_schema                         : sonar ## PostgreSQL account has permissions to access multiple schemas (check documentation)
+#sonar_postgres_sudo_user                 : postgres
 #mysql
-#sonar_jdbc_driver                        : "mysql" # postgres, h2 or mysql
-#sonar_jdbc_port                          : 3306 # h2 default is 9092 postgresql 5432 and mysql is 3306
+sonar_jdbc_driver                        : "mysql" # postgres, h2 or mysql
+sonar_jdbc_host                          : "127.0.0.1"  
+sonar_jdbc_port                          : 3306 # h2 default is 9092 postgresql 5432 and mysql is 3306
+sonar_jdbc_user                          : "sonar"
+sonar_jdbc_pass                          : "Motdepasse12"
+sonar_jdbc_db                            : sonar
+sonar_mysql_sudo_user                    : mysql
+sonar_login_user                         : root
+sonar_login_password                     : "Motdepasse12"
 sonar_mysql_allowed_hosts:
   - 127.0.0.1
   - ::1
