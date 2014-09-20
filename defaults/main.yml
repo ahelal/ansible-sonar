@@ -33,6 +33,7 @@ sonar_mysql_allowed_hosts:
 ## Where to install sonar and Unix user/group
 sonar_owner                              : "sonar" 
 sonar_group                              : "sonar"
+sonar_shell                              : "/bin/bash"
 sonar_base_dir                           : "/usr/local/sonar"
 
 ## JDBC extra option
