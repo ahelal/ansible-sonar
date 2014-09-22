@@ -20,7 +20,8 @@
     name="{{sonar_owner}}"
     group="{{sonar_group}}"
     home="{{sonar_base_dir}}"
-    shell="/bin/bash"
+    shell="{{sonar_shell}}"
+    comment="Sonar User" 
   tags: sonar_setup
 
 - name: Download sonar
