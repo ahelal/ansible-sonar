@@ -1,6 +1,6 @@
 ---
-#dependencies:
-#  - { role: geerlingguy.mysql }
+dependencies:
+  - { role: geerlingguy.mysql }
   
 galaxy_info:
   author: Adham Helal
