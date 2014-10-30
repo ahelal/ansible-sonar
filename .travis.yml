@@ -7,6 +7,8 @@ before_install:
 install:
 #  - sudo pip install --no-use-wheel https://github.com/ansible/ansible/archive/devel.zip
   - sudo pip install ansible
+# Install required dependencies.
+  - ansible-galaxy install geerlingguy.mysql
 script:
   - ansible --version
 #  - export ANSIBLE_ROLES_PATH="../"
