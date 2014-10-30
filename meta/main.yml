@@ -1,3 +1,7 @@
+---
+#dependencies:
+#  - { role: geerlingguy.mysql }
+  
 galaxy_info:
   author: Adham Helal
   description: "Deploy sonar qube on Ubuntu 12.04"

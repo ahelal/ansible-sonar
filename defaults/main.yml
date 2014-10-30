@@ -20,11 +20,11 @@ sonar_jdbc_driver                        : "mysql" # postgres, h2 or mysql
 sonar_jdbc_host                          : "127.0.0.1"  
 sonar_jdbc_port                          : 3306 # h2 default is 9092 postgresql 5432 and mysql is 3306
 sonar_jdbc_user                          : "sonar"
-sonar_jdbc_pass                          : "Motdepasse12"
+sonar_jdbc_pass                          : "sonar"
 sonar_jdbc_db                            : sonar
 sonar_mysql_sudo_user                    : mysql
-sonar_login_user                         : root
-sonar_login_password                     : "Motdepasse12"
+sonar_login_user                         : "root"
+sonar_login_password                     : "microsoft"
 sonar_mysql_allowed_hosts:
   - 127.0.0.1
   - ::1
