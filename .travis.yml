@@ -8,7 +8,8 @@ install:
 #  - sudo pip install --no-use-wheel https://github.com/ansible/ansible/archive/devel.zip
   - sudo pip install ansible
 # Install required dependencies.
-  - ansible-galaxy install geerlingguy.mysql
+#  - ansible-galaxy install geerlingguy.mysql
+#  - git clone https://github.com/geerlingguy/ansible-role-mysql.git mysql
 script:
   - ansible --version
 #  - export ANSIBLE_ROLES_PATH="../"
