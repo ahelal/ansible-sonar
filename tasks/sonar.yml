@@ -6,32 +6,33 @@
   when: "sonar_jdbc_driver not in sonar_supported_db"
 
 - name: Install unzip
-  apt: 
+  apt:
     name=unzip
   tags: sonar_setup
 
 - name: Add group "sonar"
-  group: 
+  group:
     name="{{sonar_group}}"
   tags: sonar_setup
 
 - name: Add user "sonar"
-  user: 
+  user:
     name="{{sonar_owner}}"
     group="{{sonar_group}}"
     home="{{sonar_base_dir}}"
     shell="{{sonar_shell}}"
-    comment="Sonar User" 
+    comment="Sonar User"
   tags: sonar_setup
 
 - name: Download sonar
-  get_url: 
+  get_url:
     url="{{sonar_url}}"
     dest="/tmp/{{sonar_archive}}"
   tags: sonar_setup
 
 - name: Create Basedir
-  file: 
+  sudo: yes
+  file:
     dest="{{sonar_base_dir}}"
     state=directory
     owner="{{sonar_owner}}"
@@ -39,7 +40,8 @@
   tags: sonar_setup
 
 - name: Extract archive sonar
-  unarchive: 
+  sudo: yes
+  unarchive:
     src="/tmp/{{sonar_archive}}"
     dest="{{sonar_base_dir}}/"
     owner="{{sonar_owner}}"
@@ -51,6 +53,7 @@
   tags: sonar_setup
 
 - name: create a link to sonar
+  sudo: yes
   file:
     src="{{sonar_base_dir}}/{{sonar_name}}"
     dest="{{sonar_base_dir}}/sonar{{sonar_major}}"
@@ -60,6 +63,7 @@
   tags: sonar_setup
 
 - name: Configure sonar server properties
+  sudo: yes
   template:
     src=sonar.conf.j2
     dest="{{sonar_conf_dir}}/sonar.properties"
@@ -67,7 +71,8 @@
   notify: restart sonar
 
 - name: Install sonar init script
-  file: 
+  sudo: yes
+  file:
     src="{{sonar_bin_dir}}/linux-x86-{{ansible_userspace_bits}}/sonar.sh"
     dest="/etc/init.d/sonar"
     state=link
