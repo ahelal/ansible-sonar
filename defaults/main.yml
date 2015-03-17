@@ -8,7 +8,7 @@ sonar_port                               : "9000"
 # JDBC Setting
 #postgres
 #sonar_jdbc_driver                        : "h2" # postgres, h2 or mysql
-#sonar_jdbc_host                          : "127.0.0.1"  
+#sonar_jdbc_host                          : "127.0.0.1"
 #sonar_jdbc_port                          : 9092 # h2 default is 9092 postgresql 5432 and mysql is 3306
 #sonar_jdbc_user                          : "sonar"
 #sonar_jdbc_pass                          : "rN88HJkB"
@@ -17,21 +17,21 @@ sonar_port                               : "9000"
 #sonar_postgres_sudo_user                 : postgres
 #mysql
 sonar_jdbc_driver                        : "mysql" # postgres, h2 or mysql
-sonar_jdbc_host                          : "127.0.0.1"  
+sonar_jdbc_host                          : "127.0.0.1"
 sonar_jdbc_port                          : 3306 # h2 default is 9092 postgresql 5432 and mysql is 3306
 sonar_jdbc_user                          : "sonar"
-sonar_jdbc_pass                          : "sonar"
+sonar_jdbc_pass                          : "Motdepasse12"
 sonar_jdbc_db                            : sonar
 sonar_mysql_sudo_user                    : mysql
 sonar_login_user                         : "root"
-sonar_login_password                     : "microsoft"
+sonar_login_password                     : "Motdepasse12"
 sonar_mysql_allowed_hosts:
   - 127.0.0.1
   - ::1
   - localhost
 
 ## Where to install sonar and Unix user/group
-sonar_owner                              : "sonar" 
+sonar_owner                              : "sonar"
 sonar_group                              : "sonar"
 sonar_shell                              : "/bin/bash"
 sonar_base_dir                           : "/usr/local/sonar"
@@ -57,7 +57,7 @@ sonar_analyzer_runner_file               : "sonar-runner-dist-{{sonar_analyzer_r
 sonar_analyzer_runner_url                : "http://repo1.maven.org/maven2/org/codehaus/sonar/runner/sonar-runner-dist/{{sonar_analyzer_runner_version}}/{{sonar_analyzer_runner_file}}"
 sonar_analyzer_runner_host_connect       : "127.0.0.1"
 
-## Maven 
+## Maven
 maven_install                            : true
 maven_version_major                      : '3' # Maven major version number
 maven_version_minor                      : '2' # Maven minor version number
@@ -86,7 +86,7 @@ sonar_plugins_apt                        :
 
 sonar_plugins                            :
     - name  : "Python Support"
-      url   : "http://repository.codehaus.org/org/codehaus/sonar-plugins/python/sonar-python-plugin/1.1/sonar-python-plugin-1.1.jar" 
+      url   : "http://repository.codehaus.org/org/codehaus/sonar-plugins/python/sonar-python-plugin/1.1/sonar-python-plugin-1.1.jar"
 
 #    - name  : "Java script support"
 #      url   : "http://repository.codehaus.org/org/codehaus/sonar-plugins/javascript/sonar-javascript-plugin/1.6/sonar-javascript-plugin-1.6.jar"
@@ -99,12 +99,12 @@ sonar_plugins                            :
 
 #    - name  : "German language"
 #      url   : "http://repository.codehaus.org/org/codehaus/sonar-plugins/l10n/sonar-l10n-de-plugin/1.0/sonar-l10n-de-plugin-1.0.jar"
-    
+
 #    - name  : "Jira"
 #      url   : "http://repository.codehaus.org/org/codehaus/sonar-plugins/sonar-jira-plugin/1.2/sonar-jira-plugin-1.2.jar"
 
 
-## Most likely you dont need to edit 
+## Most likely you dont need to edit
 sonar_service_state   : 'started'
 sonar_service_enabled : 'yes'
 sonar_version         : "{{sonar_major}}.{{sonar_minor}}"
