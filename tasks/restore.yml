@@ -1,0 +1,39 @@
+---
+
+- name: create temp folder
+  local_action: file
+    path={{ sonar_backup_temp_folder }}/plugins/ owner=vagrant group=vagrant state=directory
+
+- name: copy plugins from backup
+  local_action: synchronize
+     src="{{ sonar_remote_user }}@{{ sonar_remote_ip }}:/home/jenkins/sonar_backup_files/{{ sonar_backup_number }}/plugins/"
+     dest="{{ sonar_backup_temp_folder }}/plugins/"
+     rsync_opts="--rsh='ssh -i {{ sonar_backup_temp_folder }}',--recursive,--compress"
+
+- name: copy sql dump from backup
+  local_action: synchronize
+     src="{{ sonar_remote_user }}@{{ sonar_remote_ip }}:/home/jenkins/sonar_backup_files/{{ sonar_backup_number }}/{{ sonar_remote_backup_archive }}"
+     dest="{{ sonar_backup_temp_folder }}/"
+     rsync_opts="--rsh='ssh -i {{ sonar_backup_temp_folder }}',--compress"
+
+- name: restore plugins from backup
+  remote_user: sonar
+  sudo: no
+  synchronize: src="{{ sonar_backup_temp_folder }}/plugins/" dest="{{ sonar_home_dir }}/plugins/" rsync_opts=--rsh='ssh -i {{ sonar_backup_temp_folder }}',--recursive,--compress
+
+- name: restore sql dump from backup
+  remote_user: sonar
+  sudo: no
+  synchronize: src="{{ sonar_backup_temp_folder }}/{{ sonar_remote_backup_archive }}" dest="{{ sonar_home_dir }}/" rsync_opts=--rsh='ssh -i {{ sonar_backup_temp_folder }}',--compress
+
+- name: unpack sqldump
+  shell: gzip -d {{ sonar_home_dir }}/{{ sonar_remote_backup_archive }}
+
+- name: switch to sonar db
+  shell: sed -i "s;{{ sonar_remote_backup_name }};sonar;g" {{ sonar_home_dir }}/{{ sonar_remote_backup_name }}.sql
+
+- name: set ownership on all sonar files
+  file: path={{ sonar_home_dir }}/ owner=sonar group=sonar state=directory recurse=true
+
+- name: import sqldump
+  shell: mysql -u {{ sonar_jdbc_user }} -p{{ sonar_jdbc_pass }} {{ sonar_jdbc_db }} < {{ sonar_home_dir }}/{{ sonar_remote_backup_name }}.sql
