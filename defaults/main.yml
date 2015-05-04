@@ -86,22 +86,22 @@ sonar_plugins_apt                        :
 
 sonar_plugins                            :
     - name  : "Python Support"
-      url   : "http://repository.codehaus.org/org/codehaus/sonar-plugins/python/sonar-python-plugin/1.1/sonar-python-plugin-1.1.jar"
+      url   : "http://dist.sonarsource.com/oss/org/codehaus/sonar-plugins/python/sonar-python-plugin/1.1/sonar-python-plugin-1.1.jar"
 
 #    - name  : "Java script support"
-#      url   : "http://repository.codehaus.org/org/codehaus/sonar-plugins/javascript/sonar-javascript-plugin/1.6/sonar-javascript-plugin-1.6.jar"
+#      url   : "http://dist.sonarsource.com/oss/org/codehaus/sonar-plugins/javascript/sonar-javascript-plugin/1.6/sonar-javascript-plugin-1.6.jar"
 
 #    - name  : "Web HTML (included in HTML, JSP, JSF, Ruby, PHP, etc. pages"
-#      url   : "http://repository.codehaus.org/org/codehaus/sonar-plugins/sonar-web-plugin/2.1/sonar-web-plugin-2.1.jar"
+#      url   : "http://dist.sonarsource.com/oss/org/codehaus/sonar-plugins/sonar-web-plugin/2.1/sonar-web-plugin-2.1.jar"
 
 #    - name  : "XML support"
-#      url   : "http://repository.codehaus.org/org/codehaus/sonar-plugins/xml/sonar-xml-plugin/1.0.1/sonar-xml-plugin-1.0.1.jar"
+#      url   : "http://dist.sonarsource.com/oss/org/codehaus/sonar-plugins/xml/sonar-xml-plugin/1.0.1/sonar-xml-plugin-1.0.1.jar"
 
 #    - name  : "German language"
-#      url   : "http://repository.codehaus.org/org/codehaus/sonar-plugins/l10n/sonar-l10n-de-plugin/1.0/sonar-l10n-de-plugin-1.0.jar"
+#      url   : "http://dist.sonarsource.com/oss/org/codehaus/sonar-plugins/l10n/sonar-l10n-de-plugin/1.0/sonar-l10n-de-plugin-1.0.jar"
 
 #    - name  : "Jira"
-#      url   : "http://repository.codehaus.org/org/codehaus/sonar-plugins/sonar-jira-plugin/1.2/sonar-jira-plugin-1.2.jar"
+#      url   : "http://dist.sonarsource.com/oss/org/codehaus/sonar-plugins/sonar-jira-plugin/1.2/sonar-jira-plugin-1.2.jar"
 
 
 ## Most likely you dont need to edit
