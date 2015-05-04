@@ -127,7 +127,7 @@ sonar_supported_db    :
 sonar_restore_install : False ## By default dont install sonar from backup
 sonar_backup_temp_folder: "/tmp"
 sonar_remote_rsa: "/home/vagrant/.ssh/id_rsa" # RSA key used when sonar is created from backup
-sonar_remote_user: {{ sonar_user }}
+sonar_remote_user: "{{ sonar_user }}"
 sonar_remote_backup_name: "sonar37"
 sonar_remote_backup_archive: "{{ sonar_remote_backup_name }}.sql.gz"
 sonar_remote_ip: "127.0.0.1"
