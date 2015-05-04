@@ -62,7 +62,7 @@ maven_install                            : true
 maven_version_major                      : '3' # Maven major version number
 maven_version_minor                      : '2' # Maven minor version number
 maven_version_patch                      : '1' # Maven patch version number
-maven_mirror                             : "http://ftp.fau.de/apache/maven"
+maven_mirror                             : "http://archive.apache.org/dist/maven/maven-{{ maven_version|regex_replace('\\..*', '') }}/{{ maven_version }}/binaries"
 maven_redis_sha256sum                    : 'cdee2fd50b2b4e34e2d67d01ab2018b051542ee759c07354dd7aed6f4f71675c'
 maven_bin_path                           : '/usr/local/bin'
 maven_install_dir                        : '/opt/maven'
