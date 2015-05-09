@@ -6,7 +6,10 @@
 
 - include:  mysql.yml
   when: sonar_mysql_install
-  
+
+- include:  restore.yml
+  when: sonar_restore_install
+
 - include: sonar.yml
 
 - include: analyzer_runner.yml

@@ -1,10 +1,11 @@
 ---
 - name: projects | Install git
-  apt: 
+  apt:
     name=git
 
 - name: projects | Create project directory
-  file: 
+  sudo: yes
+  file:
     dest="{{sonar_analyzer_runner_dir}}"
     state=directory
     owner="{{sonar_owner}}"

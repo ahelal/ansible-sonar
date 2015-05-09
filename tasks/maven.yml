@@ -1,10 +1,10 @@
 ---
 
-- name: maven | Download Maven 
+- name: maven | Download Maven
   tags: maven
   get_url:
     dest=/tmp/{{ maven_redis_filename }}
-    url={{ maven_mirror }}/maven-{{ maven_version_major }}/{{ maven_version }}/binaries/{{ maven_redis_filename }}
+    url={{ maven_mirror }}/{{ maven_redis_filename }}
     owner=0
     group=0
     mode=0644

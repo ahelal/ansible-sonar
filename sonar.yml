@@ -1,6 +1,7 @@
 ---
 - hosts: all
-  sudo: True
+  sudo: true
   roles:
-    - ansible-sonar
+    - { role: ./ }
 
+#- include: ./integration-tests.yml
