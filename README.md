@@ -10,7 +10,7 @@ This ansible role deploys sonar for Ubuntu 12.04 (tested on vagrant)
 
 ##How to install
 * Use github to clone/fork in your role directory
-* ansible galaxy ```ansible-galaxy install adham.helal.sonar```
+* ansible galaxy ```ansible-galaxy install babineaum.sonar```
 
 ##Variables 
   Mostly you would need to configure JDBC setting if you need to tweak more have a look at the default variables are located **defaults/main.yml**. By default h2 database will be used. You can still setup mysql or postgresql in the JDBC setting. 
