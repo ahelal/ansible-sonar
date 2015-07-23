@@ -79,6 +79,10 @@ sonar_projects                           :
       version : "master"
       cron    : ""
 
+## Sonar Standalone Mode
+# This mode will allow you to install with out checks so you can configure the system after a reboot
+sonar_standalone                         : false
+
 ## Sonar plugins
 #
 sonar_plugins_apt                        :

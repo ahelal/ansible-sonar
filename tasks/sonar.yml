@@ -84,3 +84,4 @@
 - name: Ensure Sonar is running and set to start on boot.
   service: name=sonar state=started enabled=yes
   tags: sonar_setup
+  when: not sonar_standalone | bool
