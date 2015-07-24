@@ -9,12 +9,14 @@ env:
   - ANSIBLE_VERSION=1.8
 before_install:
   - sudo apt-get update -qq
+    when: ansible_os_family == "DEBIAN"
   - sudo apt-get install -qq python-apt python-pycurl
-  when: ansible_os_family == "DEBIAN"
+    when: ansible_os_family == "DEBIAN"
 before_install:
   - sudo yum update
+    when: ansible_os_family == "REDHAT"
   - sudo yum install python-apt python-pycurl
-  when: ansible_os_family == "REDHAT"
+    when: ansible_os_family == "REDHAT"
 install:
   # Install Ansible.
   - pip install ansible==$ANSIBLE_VERSION
