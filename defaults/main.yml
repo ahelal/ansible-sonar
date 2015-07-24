@@ -85,7 +85,7 @@ sonar_standalone                         : false
 
 ## Sonar plugins
 #
-sonar_plugins_apt                        :
+sonar_plugins_install                        :
     - "pylint"  ## pre dependency for python
 
 sonar_plugins                            :

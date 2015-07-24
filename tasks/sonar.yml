@@ -9,6 +9,13 @@
   apt:
     name=unzip
   tags: sonar_setup
+  when: ansible_os_family == "DEBIAN"
+
+- name: Install unzip
+  yum:
+    name=unzip
+  tags: sonar_setup
+  when: ansible_os_family == "REDHAT"
 
 - name: Add group "sonar"
   group:
