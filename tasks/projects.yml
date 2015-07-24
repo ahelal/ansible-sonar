@@ -3,6 +3,8 @@
   apt:
     name=git
     when: ansible_os_family == "DEBIAN"
+
+- name: projects | Install git
   yum:
     name=git
     when: ansible_os_family == "REDHAT"
