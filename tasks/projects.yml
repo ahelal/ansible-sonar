@@ -2,6 +2,10 @@
 - name: projects | Install git
   apt:
     name=git
+    when: ansible_os_family == "DEBIAN"
+  yum:
+    name=git
+    when: ansible_os_family == "REDHAT"
 
 - name: projects | Create project directory
   sudo: yes
