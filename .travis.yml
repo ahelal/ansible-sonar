@@ -2,8 +2,6 @@
 language: python
 python: "2.7"
 env:
-  #- ANSIBLE_VERSION=1.4
-  #- ANSIBLE_VERSION=1.5
   #- ANSIBLE_VERSION=1.6
   #- ANSIBLE_VERSION=1.7
   - ANSIBLE_VERSION=1.8
@@ -15,7 +13,7 @@ install:
   - pip install ansible==$ANSIBLE_VERSION
 script:
   - ansible --version
-  - export ANSIBLE_ROLES_PATH="../"
+  #- export ANSIBLE_ROLES_PATH="../"
   - echo localhost > inventory
   - ansible-playbook -i inventory --syntax-check sonar.yml
   - ansible-playbook -i inventory --connection=local --sudo -vvvv sonar.yml
