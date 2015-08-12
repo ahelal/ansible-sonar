@@ -13,7 +13,7 @@ sonar_port                               : "9000"
 #sonar_jdbc_user                          : "sonar"
 #sonar_jdbc_pass                          : "rN88HJkB"
 #sonar_jdbc_db                            : sonar
-#sonar_psq_schema                         : sonar ## PostgreSQL account has permissions to access multiple schemas (check documentation)
+#sonar_psql_schema                        : sonar ## PostgreSQL account has permissions to access multiple schemas (check documentation)
 #sonar_postgres_sudo_user                 : postgres
 #mysql
 sonar_jdbc_driver                        : "mysql" # postgres, h2 or mysql

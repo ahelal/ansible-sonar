@@ -12,7 +12,6 @@ before_install:
     when: ansible_os_family == "DEBIAN"
   - sudo apt-get install -qq python-apt python-pycurl
     when: ansible_os_family == "DEBIAN"
-before_install:
   - sudo yum update
     when: ansible_os_family == "REDHAT"
   - sudo yum install python-apt python-pycurl
