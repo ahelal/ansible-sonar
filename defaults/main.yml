@@ -91,7 +91,7 @@ sonar_plugins_install                        :
 
 sonar_plugins                            :
      - name  : "Java support"
-       url   : "http://sonarsource.bintray.com/distribution/sonar-java-plugin/sonar-java-plugin-{{ sonar_java_plugin_version }}.jar"
+       url   : "http://sonarsource.bintray.com/Distribution/sonar-java-plugin/sonar-java-plugin-{{ sonar_java_plugin_version }}.jar"
 
 #    - name  : "Python Support"
 #      url   : "http://dist.sonarsource.com/oss/org/codehaus/sonar-plugins/python/sonar-python-plugin/1.1/sonar-python-plugin-1.1.jar"
