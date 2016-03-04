@@ -15,10 +15,10 @@
   when: "sonar_plugins_install is defined and sonar_plugins_install | count > 0 and ansible_os_family == 'REDHAT'"
 
 - name: plugins | Download and install plugins
-  sudo: yes
+  become: yes
   get_url:
     url="{{item.url}}"
     dest="{{sonar_ext_dir}}"
   with_items: sonar_plugins
-  sudo_user: "{{sonar_owner}}"
+  become_user: "{{sonar_owner}}"
   notify: restart sonar

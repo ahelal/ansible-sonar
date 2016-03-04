@@ -1,6 +1,6 @@
 ---
-- name: restart sonar 
-  service: 
+- name: restart sonar
+  service:
      name=sonar
      state=restarted
      enabled={{sonar_service_enabled}}
@@ -8,7 +8,7 @@
   when: not sonar_standalone | bool
 
 - name: wait for sonar to start
-  wait_for: 
+  wait_for:
      port={{sonar_port}}
      timeout=180
   when: not sonar_standalone | bool
