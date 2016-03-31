@@ -140,3 +140,6 @@ sonar_remote_backup_name: "sonar37"
 sonar_remote_backup_archive: "{{ sonar_remote_backup_name }}.sql.gz"
 sonar_remote_ip: "127.0.0.1"
 sonar_backup_number: 100
+
+sonar_git_version: 1.7
+sonar_unzip_version: 6.0

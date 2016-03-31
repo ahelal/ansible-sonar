@@ -1,13 +1,13 @@
 ---
 
-- name: analyzer_runner | Download 
-  get_url: 
+- name: analyzer_runner | Download
+  get_url:
     url="{{sonar_analyzer_runner_url}}"
     dest="/tmp/{{sonar_analyzer_runner_file}}"
   tags: analyzer_runner
 
-- name: analyzer_runner | Create base dir 
-  file: 
+- name: analyzer_runner | Create base dir
+  file:
     dest="{{sonar_analyzer_runner_dir}}"
     state=directory
     owner="{{sonar_owner}}"
@@ -15,14 +15,14 @@
   tags: analyzer_runner
 
 - name: analyzer_runner | Extract archive
-  unarchive: 
+  unarchive:
     src="/tmp/{{sonar_analyzer_runner_file}}"
     dest="{{sonar_base_dir}}/"
     owner="{{sonar_owner}}"
     group="{{sonar_group}}"
     copy=no
     creates="{{sonar_analyzer_runner_dir}}/conf"
-  sudo_user: "{{sonar_owner}}"
+  become_user: "{{sonar_owner}}"
   tags: analyzer_runner
   notify: restart sonar
 
@@ -34,8 +34,8 @@
   notify: restart sonar
 
 - name: analyzer_runner | bash profile SONAR_RUNNER_HOME
-  lineinfile: 
-     dest="{{sonar_base_dir}}/.bash_profile" 
+  lineinfile:
+     dest="{{sonar_base_dir}}/.bash_profile"
      state=present
      create=yes
      regexp="SONAR_RUNNER_HOME"
@@ -46,8 +46,8 @@
   tags: analyzer_runner
 
 - name: analyzer_runner | bash profile PATH
-  lineinfile: 
-     dest="{{sonar_base_dir}}/.bash_profile" 
+  lineinfile:
+     dest="{{sonar_base_dir}}/.bash_profile"
      state=present
      create=yes
      regexp="PATH"

@@ -1,29 +1,29 @@
 ---
 - name: projects | Install git
   apt:
-    name=git
+    name="git-{{ sonar_git_version }}"
   when: ansible_os_family == "DEBIAN"
 
 - name: projects | Install git
   yum:
-    name=git
+    name="git-{{ sonar_git_version }}"
   when: ansible_os_family == "REDHAT"
 
 - name: projects | Create project directory
-  sudo: yes
+  become: yes
   file:
-    dest="{{sonar_analyzer_runner_dir}}"
+    dest="{{ sonar_analyzer_runner_dir }}"
     state=directory
-    owner="{{sonar_owner}}"
-    group="{{sonar_group}}"
+    owner="{{ sonar_owner }}"
+    group="{{ sonar_group }}"
 
 - name: projects | Get All projects from git
   git:
-     repo="{{item.git}}"
-     dest="{{sonar_projects_base}}/{{item.name}}"
-     version="{{item.version}}"
+     repo="{{ item.git }}"
+     dest="{{ sonar_projects_base }}/{{ item.name }}"
+     version="{{ item.version }}"
   with_items: sonar_projects
-  sudo_user: "{{sonar_owner}}"
+  become_user: "{{ sonar_owner }}"
   when: sonar_projects | count > 0
 
 

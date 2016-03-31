@@ -7,13 +7,13 @@
 
 - name: Install unzip
   apt:
-    name=unzip
+    name="unzip-{{ sonar_unzip_version }}"
   when: ansible_os_family == "DEBIAN"
   tags: sonar_setup
 
 - name: Install unzip
   yum:
-    name=unzip
+    name="unzip-{{ sonar_unzip_version }}"
   when: ansible_os_family == "REDHAT"
   tags: sonar_setup
 
@@ -38,7 +38,7 @@
   tags: sonar_setup
 
 - name: Create Basedir
-  sudo: yes
+  become: yes
   file:
     dest="{{sonar_base_dir}}"
     state=directory
@@ -47,7 +47,7 @@
   tags: sonar_setup
 
 - name: Extract archive sonar
-  sudo: yes
+  become: yes
   unarchive:
     src="/tmp/{{sonar_archive}}"
     dest="{{sonar_base_dir}}/"
@@ -56,11 +56,11 @@
     copy=no
     creates="{{sonar_home_dir}}/bin"
   notify: restart sonar
-  sudo_user: "{{sonar_owner}}"
+  become_user: "{{sonar_owner}}"
   tags: sonar_setup
 
 - name: create a link to sonar
-  sudo: yes
+  become: yes
   file:
     src="{{sonar_base_dir}}/{{sonar_name}}"
     dest="{{sonar_base_dir}}/sonar{{sonar_major}}"
@@ -70,7 +70,7 @@
   tags: sonar_setup
 
 - name: Configure sonar server properties
-  sudo: yes
+  become: yes
   template:
     src=sonar.conf.j2
     dest="{{sonar_conf_dir}}/sonar.properties"
@@ -78,7 +78,7 @@
   notify: restart sonar
 
 - name: Install sonar init script
-  sudo: yes
+  become: yes
   file:
     src="{{sonar_bin_dir}}/linux-x86-{{ansible_userspace_bits}}/sonar.sh"
     dest="/etc/init.d/sonar"
