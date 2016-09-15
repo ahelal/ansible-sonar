@@ -1,7 +1,7 @@
-[![Build Status](https://travis-ci.org/ahelal/ansible-sonar.svg?branch=master)](https://travis-ci.org/ahelal/ansible-sonar)
+[![Build Status](https://travis-ci.org/babineaum/ansible-sonar.svg?branch=master)](https://travis-ci.org/babineaum/ansible-sonar)
 #Readme
 
-This ansible role deploys sonar for Ubuntu 12.04 (tested on vagrant)
+This ansible role deploys sonar for Debian and Redhat based OSes.
 
 ##Prerequisite
 * Having ansible installed on your workstation. 
