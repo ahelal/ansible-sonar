@@ -13,7 +13,7 @@ sonar_port                               : "9000"
 #sonar_jdbc_user                          : "sonar"
 #sonar_jdbc_pass                          : "rN88HJkB"
 #sonar_jdbc_db                            : sonar
-#sonar_psq_schema                         : sonar ## PostgreSQL account has permissions to access multiple schemas (check documentation)
+#sonar_psql_schema                        : sonar ## PostgreSQL account has permissions to access multiple schemas (check documentation)
 #sonar_postgres_sudo_user                 : postgres
 #mysql
 sonar_jdbc_driver                        : "mysql" # postgres, h2 or mysql
@@ -79,14 +79,22 @@ sonar_projects                           :
       version : "master"
       cron    : ""
 
+## Sonar Standalone Mode
+# This mode will allow you to install with out checks so you can configure the system after a reboot
+sonar_standalone                         : false
+
 ## Sonar plugins
 #
-sonar_plugins_apt                        :
+sonar_java_plugin_version                : "3.4"
+sonar_plugins_install                        :
     - "pylint"  ## pre dependency for python
 
 sonar_plugins                            :
-    - name  : "Python Support"
-      url   : "http://dist.sonarsource.com/oss/org/codehaus/sonar-plugins/python/sonar-python-plugin/1.1/sonar-python-plugin-1.1.jar"
+     - name  : "Java support"
+       url   : "http://sonarsource.bintray.com/Distribution/sonar-java-plugin/sonar-java-plugin-{{ sonar_java_plugin_version }}.jar"
+
+#    - name  : "Python Support"
+#      url   : "http://dist.sonarsource.com/oss/org/codehaus/sonar-plugins/python/sonar-python-plugin/1.1/sonar-python-plugin-1.1.jar"
 
 #    - name  : "Java script support"
 #      url   : "http://dist.sonarsource.com/oss/org/codehaus/sonar-plugins/javascript/sonar-javascript-plugin/1.6/sonar-javascript-plugin-1.6.jar"
@@ -132,3 +140,6 @@ sonar_remote_backup_name: "sonar37"
 sonar_remote_backup_archive: "{{ sonar_remote_backup_name }}.sql.gz"
 sonar_remote_ip: "127.0.0.1"
 sonar_backup_number: 100
+
+sonar_git_version: 1.7
+sonar_unzip_version: 6.0

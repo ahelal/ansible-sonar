@@ -1,7 +1,7 @@
-[![Build Status](https://travis-ci.org/ahelal/ansible-sonar.svg?branch=master)](https://travis-ci.org/ahelal/ansible-sonar)
+[![Build Status](https://travis-ci.org/babineaum/ansible-sonar.svg?branch=master)](https://travis-ci.org/babineaum/ansible-sonar)
 #Readme
 
-This ansible role deploys sonar for Ubuntu 12.04 (tested on vagrant)
+This ansible role deploys sonar for Debian and Redhat based OSes.
 
 ##Prerequisite
 * Having ansible installed on your workstation. 
@@ -10,7 +10,7 @@ This ansible role deploys sonar for Ubuntu 12.04 (tested on vagrant)
 
 ##How to install
 * Use github to clone/fork in your role directory
-* ansible galaxy ```ansible-galaxy install adham.helal.sonar```
+* ansible galaxy ```ansible-galaxy install babineaum.sonar```
 
 ##Variables 
   Mostly you would need to configure JDBC setting if you need to tweak more have a look at the default variables are located **defaults/main.yml**. By default h2 database will be used. You can still setup mysql or postgresql in the JDBC setting. 
@@ -55,3 +55,4 @@ You can configure your variables in ansible with one of the following
 
 ##Possible issues
 
+  More Linux OSes need to be supported

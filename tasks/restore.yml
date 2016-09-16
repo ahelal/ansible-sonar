@@ -18,12 +18,12 @@
 
 - name: restore plugins from backup
   remote_user: sonar
-  sudo: no
+  become: no
   synchronize: src="{{ sonar_backup_temp_folder }}/plugins/" dest="{{ sonar_home_dir }}/plugins/" rsync_opts=--rsh='ssh -i {{ sonar_backup_temp_folder }}',--recursive,--compress
 
 - name: restore sql dump from backup
   remote_user: sonar
-  sudo: no
+  become: no
   synchronize: src="{{ sonar_backup_temp_folder }}/{{ sonar_remote_backup_archive }}" dest="{{ sonar_home_dir }}/" rsync_opts=--rsh='ssh -i {{ sonar_backup_temp_folder }}',--compress
 
 - name: unpack sqldump

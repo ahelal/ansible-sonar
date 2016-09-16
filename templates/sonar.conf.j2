@@ -97,8 +97,8 @@ sonar.jdbc.url:                            jdbc:postgresql://{{sonar_jdbc_host}}
 # Uncomment the following property if the PostgreSQL account has permissions to access multiple schemas,
 # for example sonar schemas with different versions. In that case, use the same property during project analysis
 # (-Dsonar.jdbc.schema=<schema>)
-{% if sonar_jdbc_driver == "postgresql" and sonar_psq_schema is defined %}  
-sonar.jdbc.schema:                        {{sonar_psq_schema}}
+{% if sonar_jdbc_driver == "postgresql" and sonar_psql_schema is defined %}  
+sonar.jdbc.schema:                        {{sonar_psql_schema}}
 {% else %}
 #sonar.jdbc.schema:                         public
 {% endif %}
