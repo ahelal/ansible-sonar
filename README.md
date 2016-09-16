@@ -55,3 +55,4 @@ You can configure your variables in ansible with one of the following
 
 ##Possible issues
 
+  More Linux OSes need to be supported
