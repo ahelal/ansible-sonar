@@ -116,6 +116,152 @@ sonar.jdbc.maxWait:                        {{sonar_jdbc_maxWait}}
 sonar.jdbc.minEvictableIdleTimeMillis:     {{sonar_jdbc_minEvictableIdleTimeMillis}}
 sonar.jdbc.timeBetweenEvictionRunsMillis:  {{sonar_jdbc_timeBetweenEvictionRunsMillis}}
 
+#--------------------------------------------------------------------------------------------------
+# WEB SERVER
+
+# Web server is executed in a dedicated Java process. By default its heap size is 768Mb.
+# Use the following property to customize JVM options. Enabling the HotSpot Server VM
+# mode (-server) is recommended.
+# Note that the option -Dfile.encoding=UTF-8 is mandatory.
+sonar.web.javaOpts=-Xmx768m -XX:MaxPermSize=160m -XX:+HeapDumpOnOutOfMemoryError -server
+
+# Same as previous property, but allows to not repeat all other settings
+# like -Djava.awt.headless=true
+#sonar.web.javaAdditionalOpts=
+
+# Binding IP address. For servers with more than one IP address, this property specifies which
+# address will be used for listening on the specified ports.
+# By default, ports will be used on all IP addresses associated with the server.
+#sonar.web.host=0.0.0.0
+
+# Web context. When set, it must start with forward slash (for example /sonarqube).
+# The default value is root context (empty value).
+#sonar.web.context=
+
+# TCP port for incoming HTTP connections. Disabled when value is -1.
+#sonar.web.port=9000
+
+# TCP port for incoming HTTPS connections. Disabled when value is -1 (default).
+#sonar.web.https.port=-1
+sonar.web.https.port=8999
+
+#
+# Recommendation for HTTPS
+#    SonarQube natively supports HTTPS. However using a reverse proxy
+#    infrastructure is the recommended way to set up your SonarQube installation
+#    on production environments which need to be highly secured.
+#    This allows to fully master all the security parameters that you want.
+# HTTPS - the alias used to for the server certificate in the keystore.
+# If not specified the first key read in the keystore is used.
+#sonar.web.https.keyAlias=
+#sonar.web.https.keyAlias=fr1vslkgrsrv01
+sonar.web.https.keyAlias=risk-sonar
+
+# HTTPS - the password used to access the server certificate from the
+# specified keystore file. The default value is "changeit".
+#sonar.web.https.keyPass=changeit
+#sonar.web.https.keyPass=password
+
+# HTTPS - the pathname of the keystore file where is stored the server certificate.
+# By default, the pathname is the file ".keystore" in the user home.
+# If keystoreType doesn't need a file use empty value.
+#sonar.web.https.keystoreFile=
+sonar.web.https.keystoreFile=/etc/ssl/requests/risk-sonar.jks
+
+# HTTPS - the password used to access the specified keystore file. The default
+# value is the value of sonar.web.https.keyPass.
+#sonar.web.https.keystorePass=
+
+# HTTPS - the type of keystore file to be used for the server certificate.
+# The default value is JKS (Java KeyStore).
+#sonar.web.https.keystoreType=JKS
+
+# HTTPS - the name of the keystore provider to be used for the server certificate.
+# If not specified, the list of registered providers is traversed in preference order
+# and the first provider that supports the keystore type is used (see sonar.web.https.keystoreType).
+#sonar.web.https.keystoreProvider=
+
+# HTTPS - the pathname of the truststore file which contains trusted certificate authorities.
+# By default, this would be the cacerts file in your JRE.
+# If truststoreFile doesn't need a file use empty value.
+#sonar.web.https.truststoreFile=
+#sonar.web.https.truststoreFile=/usr/java/jre1.8.0_77/lib/security/cacerts
+
+# HTTPS - the password used to access the specified truststore file. 
+#sonar.web.https.truststorePass=
+#sonar.web.https.truststorePass=changeit
+
+# HTTPS - the type of truststore file to be used.
+# The default value is JKS (Java KeyStore).
+#sonar.web.https.truststoreType=JKS
+
+# HTTPS - the name of the truststore provider to be used for the server certificate.
+# If not specified, the list of registered providers is traversed in preference order
+# and the first provider that supports the truststore type is used (see sonar.web.https.truststoreType).
+#sonar.web.https.truststoreProvider=
+#sonar.web.https.truststoreProvider=/files/sonar/sonarqube-4.5.5/bin/linux-x86-64/cacerts
+
+# HTTPS - whether to enable client certificate authentication.
+# The default is false (client certificates disabled).
+# Other possible values are 'want' (certificates will be requested, but not required),
+# and 'true' (certificates are required).
+#sonar.web.https.clientAuth=false
+#sonar.web.https.clientAuth=true
+
+# HTTPS - comma separated list of encryption ciphers to support for HTTPS connections.
+# If specified, only the ciphers that are listed and supported by the SSL implementation will be used.
+# By default, the default ciphers for the JVM will be used. Note that this usually means that the weak
+# export grade ciphers, for instance RC4, will be included in the list of available ciphers.
+# The ciphers are specified using the JSSE cipher naming convention (see
+# https://www.openssl.org/docs/apps/ciphers.html)
+# Example: sonar.web.https.ciphers=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256,TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384
+#sonar.web.https.ciphers=
+
+# The maximum number of connections that the server will accept and process at any given time.
+# When this number has been reached, the server will not accept any more connections until
+# the number of connections falls below this value. The operating system may still accept connections
+# based on the sonar.web.connections.acceptCount property. The default value is 50 for each
+# enabled connector.
+#sonar.web.http.maxThreads=50
+#sonar.web.https.maxThreads=50
+
+# The minimum number of threads always kept running. The default value is 5 for each
+# enabled connector.
+#sonar.web.http.minThreads=5
+#sonar.web.https.minThreads=5
+
+# The maximum queue length for incoming connection requests when all possible request processing
+# threads are in use. Any requests received when the queue is full will be refused.
+# The default value is 25 for each enabled connector.
+#sonar.web.http.acceptCount=25
+#sonar.web.https.acceptCount=25
+
+# Access logs are generated in the file logs/access.log. This file is rolled over when it's 5Mb.
+# An archive of 3 files is kept in the same directory.
+# Access logs are enabled by default.
+#sonar.web.accessLogs.enable=true
+
+# TCP port for incoming AJP connections. Disabled if value is -1. Disabled by default.
+#sonar.ajp.port=-1
+
+#--------------------------------------------------------------------------------------------------
+# SEARCH INDEX
+
+# Elasticsearch is used to facilitate fast and accurate information retrieval.
+# It is executed in a dedicated Java process.
+
+# JVM options. Note that enabling the HotSpot Server VM mode (-server) is recommended.
+#sonar.search.javaOpts=-Xmx256m -Xms256m -Xss256k -Djava.net.preferIPv4Stack=true \
+#  -XX:+UseParNewGC -XX:+UseConcMarkSweepGC -XX:CMSInitiatingOccupancyFraction=75 \
+#  -XX:+UseCMSInitiatingOccupancyOnly -XX:+HeapDumpOnOutOfMemoryError
+
+# Same as previous property, but allows to not repeat all other settings
+# like -Djava.awt.headless=true
+#sonar.search.javaAdditionalOpts=
+
+# Elasticsearch port. Default is 9001. Use 0 to get a free port.
+# This port must be private and must not be exposed to the Internet.
+#sonar.search.port=9001
 
 #---------------------------------------------------------
 # UPDATE CENTER
@@ -140,9 +286,86 @@ sonar.jdbc.timeBetweenEvictionRunsMillis:  {{sonar_jdbc_timeBetweenEvictionRunsM
 #http.proxyUser=
 #http.proxyPassword=
 
+#--------------------------------------------------------------------------------------------------
+# LOGGING
+
+# Level of information displayed in the logs: NONE (default), BASIC (functional information)
+# and FULL (functional and technical details)
+#sonar.log.profilingLevel=NONE
+
+# Path to log files. Can be absolute or relative to installation directory.
+# Default is <installation home>/logs
+#sonar.path.logs=logs
+
+#--------------------------------------------------------------------------------------------------
+# OTHERS
+
+# Delay in seconds between processing of notification queue. Default is 60 seconds.
+#sonar.notifications.delay=60
+
+# Paths to persistent data files (embedded database and search index) and temporary files.
+# Can be absolute or relative to installation directory.
+# Defaults are respectively <installation home>/data and <installation home>/temp
+#sonar.path.data=data
+#sonar.path.temp=temp
+
+#--------------------------------------------------------------------------------------------------
+# DEVELOPMENT - only for developers
+# The following properties MUST NOT be used in production environments.
+
+# Dev mode allows to reload web sources on changes and to restart server when new versions
+# of plugins are deployed.
+#sonar.web.dev=false
+
+# Path to webapp sources for hot-reloading of Ruby on Rails, JS and CSS (only core,
+# plugins not supported).
+#sonar.web.dev.sources=/path/to/server/sonar-web/src/main/webapp
+
+# Uncomment to enable the Elasticsearch HTTP connector, so that ES can be directly requested through
+# http://lmenezes.com/elasticsearch-kopf/?location=http://localhost:9010
+#sonar.search.httpPort=9010
+
 #---------------------------------------------------------
 # NOTIFICATIONS
 #---------------------------------------------------------
 
 # Delay (in seconds) between processing of notification queue
 sonar.notifications.delay=60
+#-------------------
+# Sonar Crowd Plugin
+#-------------------
+# IMPORTANT : before activation, make sure that one Sonar administrator is defined in the external system
+# Activates the plugin. Leave blank or comment out to use default sonar authentication.
+#sonar.authenticator.class: org.sonar.plugins.crowd.CrowdAuthenticator
+sonar.security.realm=Crowd
+
+# Ignore failure at startup if the connection to external system is refused.
+# Users can browse sonar but not log in as long as the connection fails.
+# When set to true, Sonar will not start if connection to external system fails.
+# Default is false.
+#sonar.authenticator.ignoreStartupFailure: true
+
+# Automatically create users (available since Sonar 2.0).
+# When set to true, user will be created after successful authentication, if doesn't exists.
+# The default group affected to new users can be defined online, in Sonar general settings. The default value is "sonar-users".
+# Default is false.
+#sonar.authenticator.createUsers: true
+
+# URL of the Crowd server (usually ends with /services/).
+#crowd.url:http://almtools/crowd
+crowd.url:https://fr1cslalm0010/crowd/
+
+# Crowd application name.
+# Default is 'sonar'.
+crowd.application:sonar
+#crowd.application:sonar_uat
+
+# Crowd application password.
+crowd.password:sonar123
+#crowd.password:sonar_uat
+
+# Don't use crowd for sonar account
+sonar.security.localUsers=admin,sonar
+
+# At each login, user's attributes (name and email) are re-synchronized. If set to false, user's attributes are not re-synchronized.
+sonar.security.updateUserAttributes=false

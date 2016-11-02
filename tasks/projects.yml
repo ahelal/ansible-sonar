@@ -4,7 +4,7 @@
     name=git
 
 - name: projects | Create project directory
-  sudo: yes
+  become: yes
   file:
     dest="{{sonar_analyzer_runner_dir}}"
     state=directory
@@ -17,7 +17,7 @@
      dest="{{sonar_projects_base}}/{{item.name}}"
      version="{{item.version}}"
   with_items: sonar_projects
-  sudo_user: "{{sonar_owner}}"
+  become_user: "{{sonar_owner}}"
   when: sonar_projects | count > 0
 
 
