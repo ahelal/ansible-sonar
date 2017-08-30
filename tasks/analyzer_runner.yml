@@ -22,7 +22,7 @@
     group="{{sonar_group}}"
     copy=no
     creates="{{sonar_analyzer_runner_dir}}/conf"
-  sudo_user: "{{sonar_owner}}"
+  become_user: "{{sonar_owner}}"
   tags: analyzer_runner
   notify: restart sonar
 
