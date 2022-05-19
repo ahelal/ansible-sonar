@@ -7,7 +7,7 @@
     state=present
     login_user={{ sonar_login_user}}    
     login_password={{ sonar_login_password }}
-  sudo_user: "{{ sonar_mysql_sudo_user }}"
+  become_user: "{{ sonar_mysql_sudo_user }}"
   notify: restart sonar
   tags: mysql_server
   
@@ -20,7 +20,7 @@
     login_user={{ sonar_login_user}}    
     login_password={{ sonar_login_password }}    
   with_items: sonar_mysql_allowed_hosts
-  sudo_user: "{{ sonar_mysql_sudo_user }}"
+  become_user: "{{ sonar_mysql_sudo_user }}"
   notify: restart sonar
   tags: mysql_server      
  

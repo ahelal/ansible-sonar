@@ -1,24 +1,24 @@
 ---
 
-
 - include:  postgresql.yml
-  when: sonar_postgres_install
+  when: sonar_postgres_install and not ansible_check_mode
 
 - include:  mysql.yml
-  when: sonar_mysql_install
+  when: sonar_mysql_install and not ansible_check_mode
 
 - include:  restore.yml
-  when: sonar_restore_install
+  when: sonar_restore_install and not ansible_check_mode
 
 - include: sonar.yml
+  when: not ansible_check_mode
 
 - include: analyzer_runner.yml
-  when: sonar_analyzer_runner_install
+  when: sonar_analyzer_runner_install and not ansible_check_mode
 
-- include: plugins.yml
+- include: plugins.yml and not ansible_check_mode
 
 - include: maven.yml
-  when: maven_install
+  when: maven_install and not ansible_check_mode
 
 - include: projects.yml
-  when: sonar_projects is defined
+  when: sonar_projects is defined and not ansible_check_mode

@@ -9,6 +9,8 @@
     group=0
     mode=0644
     sha256sum={{ maven_redis_sha256sum }}
+  retries: 3
+  delay: 10
 
 - name: maven | Install Maven installation directory
   tags: maven
